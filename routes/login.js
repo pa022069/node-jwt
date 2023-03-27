@@ -4,7 +4,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-router.route("/").post(async function (req, res) {
+router.route("/").post(async (req, res) =>  {
   try {
     const { username, password } = req.body;
 
@@ -19,7 +19,11 @@ router.route("/").post(async function (req, res) {
     //     return;
     //   }
 
-    const token = jwt.sign({ username, password }, process.env.JWT_SIGN_SECRET);
+    const token = jwt.sign({ username, password }, process.env.JWT_SIGN_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN
+      // expiresIn: "60s"
+      // expiresIn: '365d'
+    });
 
     res.status(200).json({ token });
   } catch (error) {
