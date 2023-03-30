@@ -2,11 +2,11 @@ const { checkSchema } = require("express-validator");
 
 const schema = checkSchema({
   username: {
-   notEmpty: true 
+    notEmpty: true,
   },
   password: {
-    notEmpty: true
-  }
+    notEmpty: true,
+  },
 });
 
 module.exports = schema;
