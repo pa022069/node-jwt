@@ -20,7 +20,7 @@ router.route("/").post(
       const { username, password } = req.body;
       const connection = createConnection();
       connection.connect();
-      connection.query(`SELECT username, password FROM employeeData WHERE username =  ?`, username, (err, rows, fields) => {
+      connection.query(`SELECT username, password FROM employeeData WHERE username = ?`, username, (err, rows, fields) => {
         if (err) throw err;
         const resultData = Object.values(JSON.parse(JSON.stringify(rows)));
 
