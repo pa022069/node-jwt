@@ -18,6 +18,7 @@ app.use(bodyparser.json({ limit: "3mb" }));
 
 app.use("/login", require("./routes/login"));
 app.use("/verify", require("./routes/verify"));
+app.use("/setting", require("./routes/setting"));
 
 app.listen(4002, function () {
   console.log("app listening on port 4002!");

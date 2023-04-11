@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 
 module.exports = {
   db: {
@@ -6,10 +6,10 @@ module.exports = {
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_BASE,
-    port: 5001
+    port: 5001,
   },
   gmail: {
     user: process.env.EMAIL_USER,
-    password: process.env.EMAIL_PASSWORD
+    password: process.env.EMAIL_PASSWORD,
   },
 };
