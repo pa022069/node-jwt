@@ -1,11 +1,13 @@
+const { validationResult } = require("express-validator");
 const express = require("express");
+const schema = require("../schema/setting");
 const router = express.Router();
 const verify = require("../helpers/verify");
 const { createConnection } = require("../helpers/mysql");
 
 router.use(verify);
 
-router.route("/list").get(async function (req, res) {
+router.route("/list").get(async (req, res) => {
   try {
     const connection = createConnection();
     connection.connect();
@@ -27,7 +29,11 @@ router.route("/list").get(async function (req, res) {
     res.status(500).json({ msg: "err" });
   }
 });
-router.route("/addNewUser").post(async function (req, res) {
+router.route("/addNewUser").post(schema.add, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty())
+    return res.status(400).json({ errors: errors.array() });
+
   try {
     const bodyValue = [
       [req.body.username, req.body.password, req.body.stagename],
@@ -53,7 +59,11 @@ router.route("/addNewUser").post(async function (req, res) {
   }
 });
 
-router.route("/deleteUser").post(async function (req, res) {
+router.route("/deleteUser").post(schema.delete, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty())
+    return res.status(400).json({ errors: errors.array() });
+
   try {
     const connection = createConnection();
     connection.connect();
