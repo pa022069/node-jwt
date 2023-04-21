@@ -16,7 +16,6 @@ router.route("/list").get(async (req, res) => {
       (err, rows) => {
         if (err) throw err;
         const resultData = Object.values(JSON.parse(JSON.stringify(rows)));
-
         res.status(200).json({
           data: resultData,
         });

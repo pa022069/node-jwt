@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const { createConnection } = require("./mysql");
 require("dotenv").config();
 
 const authentication = (req, res, next) => {

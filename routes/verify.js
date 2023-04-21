@@ -15,8 +15,9 @@ router.route("/").get(async function (req, res) {
       res.locals.username,
       (err, rows) => {
         if (err) throw err;
+        if  (rows.length === 0) return res.status(401).json({ message: "Unauthorized!" });
+        
         const resultData = Object.values(JSON.parse(JSON.stringify(rows)));
-
         res.status(200).json({
           verify: {
             username: res.locals.username,
